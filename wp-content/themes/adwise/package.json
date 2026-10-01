@@ -1,0 +1,18 @@
+{
+  "name": "adwise",
+  "version": "1.0.0",
+  "description": "Adwise — blueprint block theme (Figma → Gutenberg workflow)",
+  "private": true,
+  "scripts": {
+    "start": "wp-scripts start",
+    "build": "wp-scripts build",
+    "lint:js": "wp-scripts lint-js blocks assets/js --no-error-on-unmatched-pattern",
+    "lint:css": "wp-scripts lint-style \"{blocks,assets}/**/*.{scss,css}\" --allow-empty-input",
+    "format": "wp-scripts format blocks assets/js"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^31.5.1",
+    "copy-webpack-plugin": "^12.0.0",
+    "glob": "^11.0.0"
+  }
+}

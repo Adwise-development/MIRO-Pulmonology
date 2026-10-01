@@ -1,0 +1,15 @@
+/*
+Theme Name: Adwise
+Theme URI: https://github.com/adwise/adwise-theme
+Author: Adwise
+Author URI: https://adwise.pl
+Description: Czysty blueprint block theme pod workflow Figma → Gutenberg (React + SSR, @wordpress/scripts + Webpack 5, SCSS/BEM, PHP). Bloki dodawane per projekt.
+Requires at least: 6.9
+Tested up to: 6.9
+Requires PHP: 7.4
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: adwise
+Tags: block-theme, full-site-editing, custom-blocks
+*/

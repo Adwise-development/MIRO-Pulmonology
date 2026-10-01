@@ -11,8 +11,9 @@ Makiety lo-fi strony: https://makiety-miro-pulmonology.adwisedev.cfolks.pl/ (prz
 ## Stack
 - Docker: `MiroPulmonology_wp` (wordpress:php8.3-apache, :8108), `MiroPulmonology_db` (mariadb:11), `MiroPulmonology_mail` (Mailpit, :8131)
 - WordPress pl_PL, `blog_public=0`, bezpośrednie odnośniki `/%postname%/`, strefa Europe/Warsaw
-- Motyw: `wp-content/themes/adwise` — klon Blueprinta (remote gita `blueprint` = Adwise-development/Blueprint;
-  `git pull blueprint main` pobiera zmiany blueprintu). Własnego repo projektu jeszcze nie ma.
+- Repo projektu: git@github.com:Adwise-development/MIRO-Pulmonology.git (`origin`, gałąź `main`) — cały katalog projektu.
+- Motyw: `wp-content/themes/adwise` — Blueprint jako **git subtree** (remote `blueprint` = Adwise-development/Blueprint).
+  Zmiany blueprintu: `git subtree pull --prefix=wp-content/themes/adwise blueprint main --squash`.
 - Instrukcje: `wp-content/themes/adwise/CLAUDE.md` + `docs/` (Blueprint + figma-workflow, page-workflow, login-page,
   SLA z `~/Allinel/docs`; dokumenty innych projektów w `docs/referencje/`). **Do pracy nad blokami otwieraj folder motywu.**
 - Wtyczki: `novamira`, `novamira-pro` (dostęp MCP/CLI AdWise; opcje `novamira_ai_abilities_enabled=1`, `novamira_ai_abilities_domain=localhost`;

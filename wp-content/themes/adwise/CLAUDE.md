@@ -37,6 +37,13 @@ Po ukończeniu first-run **przepisz tę sekcję** na `## Stan projektu` (wzór n
 | **docs/optymalizacja.md** | Performance & a11y: cache, obrazy, fonty, JS, CWV, WP_Query | Ad-hoc |
 | **docs/migracja-prod.md** | Wdrożenie dev→prod | Ad-hoc |
 | **docs/recipes/login-page/** | Rebrand login KV (live: `inc/adwise-login.php`) | Ad-hoc |
+| **docs/figma-workflow.md** | Workflow Figma → blok (zestaw instrukcji AdWise, z Allinela) | Ad-hoc (ścieżka Figma) |
+| **docs/page-workflow.md** | Cała strona z jednego frame'u Figmy (wiele sekcji naraz) | Ad-hoc |
+| **docs/login-page.md** | Login KV — opis wzorca (starsza wersja recipes/login-page/) | Ad-hoc |
+| **docs/SLA-aktualizacja-wtyczek-WP.md** | Procedura SLA: aktualizacje wtyczek WP | Ad-hoc (prod) |
+| **docs/referencje/** | Dokumenty z INNYCH projektów (SEVEN, Allinel): design system, audyt bloków, architektura motywu, animacje — wzór poziomu, NIE tokeny/estetyka MIRO | Ad-hoc |
+
+Pliki wspólne z Allinelem (`block-template`, `css-conventions`, `html-to-block`, `patterns/*`, `wp-mcp`…) zostały w wersji Blueprinta — jest nowsza.
 
 **Auto-load:** CLAUDE.md + front wybranej ścieżki + docs/css-conventions.md + docs/block-template.md + `project.md` (jeśli istnieje). Patterns/reszta — ad-hoc.
 

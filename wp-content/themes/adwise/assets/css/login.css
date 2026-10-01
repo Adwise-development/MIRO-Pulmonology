@@ -1,0 +1,313 @@
+/**
+ * Adwise — Custom Login KV (split-screen branded login).
+ * Enqueue: inc/adwise-login.php → login_enqueue_scripts. Rebrand: filtr adwise_login_config + tu tokeny.
+ */
+:root {
+	--adw-purple: #7855DA;
+	--adw-purple-hover: #6342c6;
+	--adw-navy: #2B2B5C;
+	--adw-navy-deep: #1E1E45;
+	--adw-bg: #ffffff;
+	--adw-text: #2B2B5C;
+	--adw-muted: #7b7b9a;
+	--adw-border: #e2e0eb;
+	--adw-soft: #f7f6fb;
+}
+
+html { background: var(--adw-bg); }
+
+body.login {
+	margin: 0;
+	padding: 0;
+	background: var(--adw-bg);
+	min-height: 100vh;
+	position: relative;
+	color: var(--adw-text);
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* ── Brand panel (left, fixed) ─────────────────────── */
+.adw-brand {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 50%;
+	height: 100vh;
+	background: linear-gradient(135deg, var(--adw-navy) 0%, var(--adw-navy-deep) 100%);
+	color: #fff;
+	overflow: hidden;
+	padding: clamp(32px, 4vw, 64px);
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	z-index: 1;
+}
+.adw-brand__squares {
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	overflow: hidden;
+	z-index: 0;
+}
+.adw-brand__sq {
+	position: absolute;
+	background: var(--adw-purple);
+	border-radius: 2px;
+	will-change: transform;
+}
+.adw-brand__logo {
+	position: relative;
+	z-index: 2;
+}
+.adw-brand__logo a { display: inline-block; line-height: 0; transition: opacity 0.15s; }
+.adw-brand__logo a:hover { opacity: 0.75; }
+.adw-brand__logo svg {
+	display: block;
+	width: clamp(140px, 14vw, 196px);
+	height: auto;
+}
+.adw-brand__tagline {
+	position: relative;
+	z-index: 2;
+	font-size: clamp(28px, 3.2vw, 44px);
+	font-weight: 500;
+	line-height: 1.2;
+	letter-spacing: -0.02em;
+	max-width: 540px;
+}
+.adw-brand__tagline strong {
+	color: var(--adw-purple);
+	font-weight: 600;
+}
+.adw-brand__footer {
+	position: relative;
+	z-index: 2;
+	font-size: 13px;
+	opacity: 0.55;
+	letter-spacing: 0.04em;
+}
+.adw-brand__footer a {
+	color: inherit;
+	text-decoration: none;
+	border-bottom: 1px solid rgba(255,255,255,0.3);
+	transition: border-color 0.15s, color 0.15s;
+}
+.adw-brand__footer a:hover {
+	color: var(--adw-purple);
+	border-bottom-color: var(--adw-purple);
+}
+
+/* ── Right column = WP #login ─────────────────────── */
+#login {
+	margin: 0 0 0 50%;
+	width: 50%;
+	max-width: none;
+	padding: clamp(48px, 6vw, 96px) clamp(32px, 5vw, 80px);
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+}
+#login > * {
+	max-width: 420px;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* hide default WP logo block (we have our own) */
+#login h1.wp-login-logo,
+#login h1 a { display: none !important; }
+
+/* heading injected above form */
+.adw-login-heading {
+	margin: 0 0 28px;
+	font-size: 32px;
+	font-weight: 600;
+	line-height: 1.2;
+	letter-spacing: -0.02em;
+	color: var(--adw-text);
+}
+.adw-login-sub {
+	margin: -20px 0 32px;
+	color: var(--adw-muted);
+	font-size: 15px;
+	line-height: 1.5;
+}
+
+/* Center heading + helper texts, keep field labels left-aligned */
+.adw-login-heading,
+.adw-login-sub,
+.login #nav,
+.login #backtoblog,
+.login .submit { text-align: center; }
+.login form > p > label,
+.login label[for="user_login"],
+.login label[for="user_pass"] { text-align: left; display: block; }
+/* show/hide password eye button — vertically centered inside input */
+.login .wp-pwd { position: relative; }
+.login .wp-pwd input[type="password"],
+.login .wp-pwd input[type="text"] { padding-right: 44px; }
+.login .wp-pwd .button.wp-hide-pw {
+	position: absolute;
+	top: 50%;
+	right: 6px;
+	transform: translateY(-50%);
+	margin: 0;
+	padding: 0;
+	width: 32px;
+	height: 32px;
+	background: transparent;
+	border: 0;
+	box-shadow: none;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--adw-muted);
+}
+.login .wp-pwd .button.wp-hide-pw:hover { color: var(--adw-purple); background: transparent; }
+.login .wp-pwd .button.wp-hide-pw:focus { outline: none; box-shadow: 0 0 0 2px rgba(120,85,218,0.25); border-radius: 6px; }
+.login .wp-pwd .button.wp-hide-pw .text { display: none; }
+.login .wp-pwd .button.wp-hide-pw .dashicons { width: 20px; height: 20px; font-size: 20px; }
+
+.login .forgetmenot {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding-bottom: 24px;
+}
+.login .forgetmenot label { display: inline-flex; align-items: center; gap: 8px; }
+.login .forgetmenot input[type="checkbox"] { margin: 0; }
+
+/* form */
+#loginform {
+	background: transparent;
+	box-shadow: none;
+	border: 0;
+	padding: 0;
+	margin: 0;
+}
+.login form .input,
+.login input[type="text"],
+.login input[type="password"],
+.login input[type="email"] {
+	background: var(--adw-soft);
+	border: 1px solid var(--adw-border);
+	border-radius: 10px;
+	padding: 12px 14px;
+	font-size: 15px;
+	line-height: 1.4;
+	box-shadow: none;
+	margin: 2px 0 16px;
+	height: auto;
+	transition: border-color 0.15s, box-shadow 0.15s;
+}
+.login input:focus {
+	border-color: var(--adw-purple);
+	box-shadow: 0 0 0 3px rgba(120,85,218,0.18);
+	outline: none;
+}
+.login label {
+	color: var(--adw-text);
+	font-size: 13px;
+	font-weight: 500;
+	letter-spacing: 0.02em;
+}
+.login .forgetmenot label {
+	font-size: 13px;
+	font-weight: 400;
+	color: var(--adw-muted);
+}
+
+/* primary button */
+.wp-core-ui .button-primary,
+.login .button-primary {
+	background: var(--adw-purple) !important;
+	border: 0 !important;
+	box-shadow: none !important;
+	border-radius: 10px !important;
+	padding: 12px 28px !important;
+	height: auto !important;
+	line-height: 1.2 !important;
+	font-size: 14px !important;
+	font-weight: 600 !important;
+	letter-spacing: 0.06em !important;
+	text-transform: uppercase !important;
+	text-shadow: none !important;
+	color: #fff !important;
+	width: 100%;
+	transition: background 0.15s;
+}
+.wp-core-ui .button-primary:hover,
+.login .button-primary:hover {
+	background: var(--adw-purple-hover) !important;
+}
+
+/* misc text */
+.login #nav,
+.login #backtoblog {
+	margin: 18px 0 0;
+	text-align: left;
+	padding: 0;
+}
+.login #nav a,
+.login #backtoblog a {
+	color: var(--adw-purple);
+	text-decoration: none;
+	font-size: 13px;
+}
+.login #nav a:hover,
+.login #backtoblog a:hover {
+	color: var(--adw-purple-hover);
+	text-decoration: underline;
+}
+
+/* messages / errors */
+.login .message,
+.login .notice,
+#login_error {
+	border-radius: 10px;
+	border: 0;
+	background: var(--adw-soft);
+	border-left: 4px solid var(--adw-purple);
+	padding: 12px 14px;
+	box-shadow: none;
+	margin: 0 0 18px;
+	font-size: 14px;
+}
+#login_error {
+	background: #fef0f0;
+	border-left-color: #d63638;
+	color: #5b1a1a;
+}
+
+/* hide language switcher (we want clean look) */
+.login .language-switcher { display: none; }
+
+/* ── Mobile ─────────────────────────────────────── */
+@media (max-width: 900px) {
+	.adw-brand {
+		position: relative;
+		width: 100%;
+		height: auto;
+		min-height: 240px;
+		padding: 28px;
+	}
+	.adw-brand__tagline {
+		font-size: clamp(22px, 5vw, 30px);
+	}
+	#login {
+		margin-left: 0;
+		width: 100%;
+		min-height: auto;
+		padding: 40px 24px 64px;
+	}
+}
+
+/* reduced motion — statyczne kwadraty (JS też pomija animację) */
+@media (prefers-reduced-motion: reduce) {
+	.adw-brand__sq { transition: none !important; }
+}

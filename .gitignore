@@ -1,0 +1,8 @@
+.env
+wp-content/plugins/*
+wp-content/uploads/*
+node_modules/
+wp-content/themes/*/build/
+wp-content/themes/*/node_modules/
+*.log
+.DS_Store

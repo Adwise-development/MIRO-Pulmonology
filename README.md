@@ -5,7 +5,9 @@ Makiety lo-fi strony: https://makiety-miro-pulmonology.adwisedev.cfolks.pl/ (prz
 
 ## Dostęp
 - Front: http://localhost:8108
-- Panel: http://localhost:8108/wp-admin — `tremlein` / `PasswordAdWise!` (strona logowania = login KV AdWise z motywu)
+- Logowanie: **http://localhost:8108/logowanie/** — `tremlein` / `PasswordAdWise!` (ekran = login KV AdWise z motywu, jak na SEVEN).
+  `wp-login.php` → 404, `/wp-admin` bez sesji → 404 (WPS Hide Login: `whl_page=logowanie`, `whl_redirect=404`) + Limit Login Attempts Reloaded.
+  Wtyczki nie są w repo — na nowym środowisku: `wp plugin install wps-hide-login limit-login-attempts-reloaded --activate` + obie opcje.
 - Mailpit (cała poczta z WP): http://localhost:8131
 
 ## Stack
